@@ -51,11 +51,11 @@ const login = async (req, res) => {
 
 
 const updateUserInfo = async (req, res) => {
-    const { fullname, dob, address, avatar } = req.body;
+    const { fullname, email, dob, address, avatar } = req.body;
     try {
         const updatedUser = await UserModel.findByIdAndUpdate(
             req.params.id,
-            { fullname, dob, address, avatar },
+            { fullname, email, dob, address, avatar },
             { new: true }
         );
         res.json({ message: "Info updated", user: updatedUser });
@@ -120,16 +120,16 @@ const UpdateUser = async (req, res) => {
     try {
         const { username, email, password, role, fullname, dob, address, avatar } = req.body;
         const updateData = { username, email, role, fullname, dob, address, avatar };
-    
+
         if (password) {
-          updateData.password = await bcrypt.hash(password, 10);
+            updateData.password = await bcrypt.hash(password, 10);
         }
-    
+
         const updatedUser = await UserModel.findByIdAndUpdate(req.params.id, updateData, { new: true });
         res.json({ message: "User updated", user: updatedUser });
-      } catch (err) {
+    } catch (err) {
         res.status(500).json({ message: err.message });
-      }
+    }
 };
 
 
@@ -190,21 +190,33 @@ const checkEmailExists = async (req, res) => {
         res.status(500).json({ message: 'Error checking email' });
     }
 };
-//change password
+// The controller function for changing the password
 const changeUserPassword = async (req, res) => {
-    const { password } = req.body;
+    const { password } = req.body; // Get the new password from the request body
+
     try {
+        // Hash the new password
         const hashedPassword = await bcrypt.hash(password, 10);
+
+        // Find the user by ID and update their password
         const updatedUser = await UserModel.findByIdAndUpdate(
-            req.params.id,
-            { password: hashedPassword },
-            { new: true }
+            req.params.id, // Find the user by ID from the URL parameter
+            { password: hashedPassword }, // Set the new hashed password
+            { new: true } // Return the updated user
         );
+
+        if (!updatedUser) {
+            return res.status(404).json({ message: "User not found" });
+        }
+
+        // Send success response with the updated user data
         res.json({ message: "Password updated", user: updatedUser });
     } catch (err) {
+        // Handle errors, e.g., invalid user, server error
         res.status(500).json({ message: err.message });
     }
 };
+
 
 module.exports = {
     signup,

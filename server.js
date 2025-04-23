@@ -36,6 +36,15 @@ comboRoute(app);
 var userRoute = require('./api/routes/UserRoute');
 userRoute(app);
 
+var cartRoute = require('./api/routes/CartRoute');
+cartRoute(app);
+
+var billRoute = require('./api/routes/BillRoute');
+billRoute(app);
+
+var MailRoute = require('./api/routes/MailRoute');
+MailRoute(app);
+
 // ⬇️ Upload Route
 const uploadRoute = require('./api/routes/UploadRoute');
 app.use('/api', uploadRoute); // ✅ use the router properly

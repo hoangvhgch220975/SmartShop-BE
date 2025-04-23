@@ -21,13 +21,24 @@ const ViewCombo = async (req, res) => {
 
 const FindComboByName = async (req, res) => {
     try {
-        var keyword = req.params.keyword;
-        var combos = await comboModel.find({ name: { $regex: keyword, $options: 'i' } });
+        const keyword = req.params.keyword;
+
+        // Search combos based on name, includedDevices, or includedPackages
+        const combos = await comboModel.find({
+            $or: [
+                { name: { $regex: keyword, $options: 'i' } }, // Match the combo name
+                { includedDevices: { $regex: keyword, $options: 'i' } }, // Match devices included in the combo
+                { includedPackages: { $regex: keyword, $options: 'i' } }, // Match packages included in the combo
+            ],
+        });
+
         res.json(combos);
     } catch (err) {
-        console.log(err);
+        console.error(err);
+        res.status(500).send('Error occurred while fetching combos');
     }
 };
+
 
 const AddCombo = async (req, res) => {
     try {

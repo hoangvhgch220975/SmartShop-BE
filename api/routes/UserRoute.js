@@ -26,7 +26,7 @@ const UserRoute = (app) => {
     .get(UserController.checkEmailExists);
 
   //change password
-  app.route('/user/:id/change-password')
+  app.route('/users/:id/change-password')
     .put(UserController.changeUserPassword);
   
 };
