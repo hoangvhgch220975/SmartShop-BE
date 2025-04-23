@@ -11,7 +11,7 @@ module.exports = function autoReplyTemplate({ name }) {
             While waiting, feel free to browse our website or follow us on social media for the latest updates!
           </p>
           <div style="margin-top: 32px;">
-            <a href="https://smart-shop-fe.vercel.app" target="_blank" style="background-color: #10b981; color: white; padding: 10px 24px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 15px;">
+            <a href="http://localhost:8080" target="_blank" style="background-color: #10b981; color: white; padding: 10px 24px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 15px;">
               Visit SmartShop 🛍️
             </a>
           </div>
