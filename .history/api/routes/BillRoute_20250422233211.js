@@ -1,5 +1,5 @@
 const BillController = require('../controllers/BillController');
-const authMiddleware = require('../middleware/Auth');
+const authMiddleware = require('../middleware/auth');
 const isAdmin = require('../middleware/isAdmin');
 
 

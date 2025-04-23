@@ -1,5 +1,5 @@
 const CartController = require('../controllers/CartController');
-const authMiddleware = require('../middleware/Auth');
+const authMiddleware = require('../middleware/auth');
 
 const CartRoute = (app) => {
   app.get('/api/cart', authMiddleware, CartController.getCart);
