@@ -39,11 +39,6 @@ const packageSchema = new mongoose.Schema(
             type: Number,
             required: false,
         },
-        salteCount: {
-            type: Number,
-            default: 0,
-            required: false,
-        },
     },
     { collection: 'Packages' },
     { versionKey: false } // remove __v field

@@ -7,7 +7,7 @@ require('dotenv').config(); // Load environment variables from .env file
 // connect to mongodb
 const mongoose = require('mongoose');
 const dbURI = 'mongodb+srv://001343305:Hoang1910%40@mycluster.zopvl.mongodb.net/SmartStore';
-// const dbURI = 'mongodb://localhost:27017/SmartStore';
+const dbURI = 'mongodb://localhost:27017//SmartStore';
 
 
 mongoose.connect(dbURI)

@@ -43,11 +43,6 @@
                 type: Number,
                 required: false,
             },
-            salteCount: {
-                type: Number,
-                default: 0,
-                required: false,
-            },
         },
         { collection: 'Combos' },
         { versionKey: false } // remove __v field
